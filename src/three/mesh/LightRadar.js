@@ -3,12 +3,12 @@ import vertex from "@/shader/lightRader/vertex.glsl";
 import fragment from "@/shader/lightRader/fragment.glsl";
 import gsap from "gsap";
 class LightRadar {
-  constructor() {
-    this.geometry = new Three.PlaneGeometry(2, 2);
+  constructor(radius = 2, position = { x: 0, z: 0 }, color = 0xff0000) {
+    this.geometry = new Three.PlaneGeometry(radius, radius);
     this.material = new Three.ShaderMaterial({
       uniforms: {
         uColor: {
-          value: new Three.Color(0xff0000)
+          value: new Three.Color(color)
         },
         uTime: {
           value: 0
@@ -21,7 +21,7 @@ class LightRadar {
     })
 
     this.mesh = new Three.Mesh(this.geometry, this.material)
-    this.mesh.position.set(-10, 1, 2)
+    this.mesh.position.set(position.x, 1, position.z)
     this.mesh.rotateX(-Math.PI / 2)
 
     gsap.to(this.material.uniforms.uTime, {
@@ -30,6 +30,12 @@ class LightRadar {
       repeat: -1,
       ease: "none",
     })
+  }
+  remove() {
+    this.mesh.remove();
+    this.mesh.removeFromParent();
+    this.mesh.geometry.dispose();
+    this.mesh.material.dispose();
   }
 }
 

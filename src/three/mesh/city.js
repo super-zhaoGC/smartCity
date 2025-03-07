@@ -29,25 +29,25 @@ const createCity = () => {
         }
       }
     })
-    //添加飞线
-    const flyLine = new FlyLine(scene)
-    scene.add(flyLine.mesh)
-    //添加着色器飞线
-    const flyLineShader = new FlyLineShader()
-    scene.add(flyLineShader.mesh)
-    //添加光墙
-    const lightWall = new LightWall()
-    scene.add(lightWall.mesh)
-    //添加雷达扫描
-    const lightRadar = new LightRadar()
-    scene.add(lightRadar.mesh)
+    // //添加飞线
+    // const flyLine = new FlyLine(scene)
+    // scene.add(flyLine.mesh)
+    // //添加着色器飞线
+    // const flyLineShader = new FlyLineShader()
+    // scene.add(flyLineShader.mesh)
+    // //添加光墙
+    // const lightWall = new LightWall()
+    // scene.add(lightWall.mesh)
+    // //添加雷达扫描
+    // const lightRadar = new LightRadar()
+    // scene.add(lightRadar.mesh)
     //添加警告精灵图
-    const alarmSprite = new AlarmSprite();
-    scene.add(alarmSprite.mesh)
-    alarmSprite.onClick(() => {
-      console.log("警告");
+    // const alarmSprite = new AlarmSprite();
+    // scene.add(alarmSprite.mesh)
+    // alarmSprite.onClick(() => {
+    //   console.log("警告");
 
-    })
+    // })
   })
 
 

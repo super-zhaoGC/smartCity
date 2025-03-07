@@ -4,11 +4,11 @@ import vertex from "@/shader/flyLine/vertex.glsl"
 import fragment from "@/shader/flyLine/fragment.glsl"
 
 class FlyLineShader {
-  constructor() {
+  constructor(position = { x: 0, z: 0 }, color = 0x00ffff) {
     const linePoints = [
       new Three.Vector3(0, 0, 0),
-      new Three.Vector3(-4, 4, 0),
-      new Three.Vector3(-10, 0, 0)
+      new Three.Vector3(position.x / 2, 4, position.z / 2),
+      new Three.Vector3(position.x, 0, position.z)
     ]
     this.lineCurve = new Three.CatmullRomCurve3(linePoints)
     const points = this.lineCurve.getPoints(1000)
@@ -29,7 +29,7 @@ class FlyLineShader {
           value: 0,
         },
         uColor: {
-          value: new Three.Color(0xffff00)
+          value: new Three.Color(color)
         },
         uLength: {
           value: points.length
@@ -50,6 +50,11 @@ class FlyLineShader {
       ease: "none"
     })
   }
-
+  remove() {
+    this.mesh.remove();
+    this.mesh.removeFromParent();
+    this.mesh.geometry.dispose();
+    this.mesh.material.dispose();
+  }
 }
 export default FlyLineShader
